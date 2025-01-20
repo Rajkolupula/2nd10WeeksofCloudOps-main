@@ -17,7 +17,7 @@ pipeline {
         stage('Terraform init'){
              steps{
                  dir('eks-terraform') {
-                 sh 'terraform init --reconfigure'  
+                 sh 'terraform init'  
                 }
              }
         }
@@ -35,10 +35,10 @@ pipeline {
                    }
              }
         }
-        stage('Terraform apply/destroy'){
+        stage('Terraform apply'){
               steps{
                   dir('eks-terraform') {
-                       sh "terraform ${params.ACTION} -auto-approve"
+                       sh "terraform apply -auto-approve"
                    }
               }
          }
